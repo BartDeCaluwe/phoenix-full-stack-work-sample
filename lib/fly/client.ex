@@ -232,8 +232,8 @@ defmodule Fly.Client do
 
   def fetch_app_status(name, config) do
     """
-      query($appName: String!, $showCompleted: Boolean!) {
-        appstatus: app(name: $appName) {
+      query($name: String!, $showCompleted: Boolean!) {
+        appstatus: app(name: $name) {
           id
           name
           deployed
@@ -283,10 +283,10 @@ defmodule Fly.Client do
         }
       }
     """
-    |> perform_query(%{name: name}, config, :fetch_app_status)
+    |> perform_query(%{name: name, showCompleted: true}, config, :fetch_app_status)
     |> handle_response()
     |> case do
-      {:ok, %{"appstatus:app" => appstatus}} ->
+      {:ok, %{"appstatus" => appstatus}} ->
         Logger.info("appstatus returned: #{inspect(appstatus)}")
         {:ok, appstatus}
 
