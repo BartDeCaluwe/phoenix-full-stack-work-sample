@@ -47,6 +47,9 @@ RUN mix phx.digest
 # copy source here if not using TailwindCSS
 COPY lib lib
 
+# multiple copies cause an error.
+RUN true
+
 # compile and build release
 COPY rel rel
 RUN mix do compile, release
