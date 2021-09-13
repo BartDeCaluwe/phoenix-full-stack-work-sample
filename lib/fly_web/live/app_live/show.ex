@@ -19,7 +19,10 @@ defmodule FlyWeb.AppLive.Show do
 
     # Only make the API call if the websocket is setup. Not on initial render.
     if connected?(socket) do
-      {:ok, fetch_app(socket)}
+      {:ok,
+       socket
+       |> fetch_app_status()
+       |> fetch_app()}
     else
       {:ok, socket}
     end
@@ -41,6 +44,25 @@ defmodule FlyWeb.AppLive.Show do
 
       {:error, reason} ->
         Logger.error("Failed to load app '#{inspect(app_name)}'. Reason: #{inspect(reason)}")
+
+        put_flash(socket, :error, reason)
+    end
+  end
+
+  defp fetch_app_status(socket) do
+    app_name = socket.assigns.app_name
+
+    case Client.fetch_app_status(app_name, socket.assigns.config) do
+      {:ok, appstatus} ->
+        assign(socket, :appstatus, appstatus)
+
+      {:error, :unauthorized} ->
+        put_flash(socket, :error, "Not authenticated")
+
+      {:error, reason} ->
+        Logger.error(
+          "Failed to load app status '#{inspect(app_name)}' status. Reason: #{inspect(reason)}"
+        )
 
         put_flash(socket, :error, reason)
     end
