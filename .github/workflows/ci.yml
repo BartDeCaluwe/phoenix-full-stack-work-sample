@@ -7,7 +7,6 @@ env:
 
 jobs:
   deploy:
-    needs: test
     name: Deploy app
     runs-on: ubuntu-latest
     steps:
