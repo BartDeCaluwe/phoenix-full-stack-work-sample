@@ -127,10 +127,11 @@
           <!-- Deployment status -->
           <section aria-labelledby="deployment-status-title">
             <div class="bg-white shadow sm:rounded-lg">
-              <div class="px-4 py-5 sm:px-6">
+              <div class="px-4 py-5 sm:px-6 flex justify-between">
                 <h2 class="text-lg leading-6 font-medium text-gray-900">
                   Deployment status
                 </h2>
+                <span class="text-sm">updated at <%= human_readable_datetime(@appstatusUpdatedAt) %></span>
               </div>
               <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
                 <div class="sm:col-span-2">

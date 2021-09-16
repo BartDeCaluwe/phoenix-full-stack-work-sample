@@ -58,7 +58,9 @@ defmodule FlyWeb.AppLive.Show do
 
     case Client.fetch_app_status(app_name, socket.assigns.config) do
       {:ok, appstatus} ->
-        assign(socket, :appstatus, appstatus)
+        socket
+        |> assign(:appstatus, appstatus)
+        |> assign(:appstatusUpdatedAt, DateTime.utc_now())
 
       {:error, :unauthorized} ->
         put_flash(socket, :error, "Not authenticated")
@@ -107,4 +109,7 @@ defmodule FlyWeb.AppLive.Show do
   def preview_url(app) do
     "https://#{app["name"]}.fly.dev"
   end
+
+  def human_readable_datetime(datetime),
+    do: "#{datetime.hour}:#{datetime.minute}:#{datetime.second}"
 end
