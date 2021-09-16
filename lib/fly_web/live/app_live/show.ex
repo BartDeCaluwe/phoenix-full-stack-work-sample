@@ -114,7 +114,9 @@ defmodule FlyWeb.AppLive.Show do
     total = Enum.count(checks)
 
     passing =
-      Enum.reduce(checks, 0, fn check, acc -> check["status"] === "passing" && acc + 1 end)
+      Enum.reduce(checks, 0, fn check, acc ->
+        if check["status"] === "passing", do: acc + 1, else: acc
+      end)
 
     "#{passing} / #{total}"
   end
