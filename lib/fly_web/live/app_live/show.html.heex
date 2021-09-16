@@ -194,6 +194,7 @@
                                       <%= allocation["status"] %>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                      <%= format_health_checks(allocation["checks"]) %>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                       <%= allocation["restarts"] %>
