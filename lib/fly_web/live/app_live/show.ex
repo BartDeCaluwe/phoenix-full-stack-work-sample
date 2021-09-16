@@ -5,6 +5,8 @@ defmodule FlyWeb.AppLive.Show do
   alias Fly.Client
   alias FlyWeb.Components.HeaderBreadcrumbs
 
+  @default_refresh_rate 5000
+
   @impl true
   def mount(%{"name" => name}, session, socket) do
     socket =
@@ -14,14 +16,16 @@ defmodule FlyWeb.AppLive.Show do
         app: nil,
         app_name: name,
         count: 0,
-        authenticated: true
+        authenticated: true,
+        appstatus: nil
       )
 
     # Only make the API call if the websocket is setup. Not on initial render.
     if connected?(socket) do
+      schedule_work(0)
+
       {:ok,
        socket
-       |> fetch_app_status()
        |> fetch_app()}
     else
       {:ok, socket}
@@ -66,6 +70,17 @@ defmodule FlyWeb.AppLive.Show do
 
         put_flash(socket, :error, reason)
     end
+  end
+
+  defp schedule_work(seconds \\ @default_refresh_rate) do
+    Process.send_after(self(), :refresh_app_status, seconds)
+  end
+
+  @impl true
+  def handle_info(:refresh_app_status, socket) do
+    socket = fetch_app_status(socket)
+    schedule_work()
+    {:noreply, socket}
   end
 
   @impl true

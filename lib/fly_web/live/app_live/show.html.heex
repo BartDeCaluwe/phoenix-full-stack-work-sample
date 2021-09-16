@@ -123,6 +123,7 @@
             </div>
           </section>
 
+          <%= if @appstatus do %>
           <!-- Deployment status -->
           <section aria-labelledby="deployment-status-title">
             <div class="bg-white shadow sm:rounded-lg">
@@ -212,6 +213,7 @@
               </div>
             </div>
           </section>
+          <% end %>
         </div>
 
         <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
