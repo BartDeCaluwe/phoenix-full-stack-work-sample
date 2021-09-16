@@ -106,6 +106,20 @@ defmodule FlyWeb.AppLive.Show do
     end
   end
 
+  def deployment_status_bg_color(appstatus) do
+    case appstatus["deploymentStatus"]["status"] do
+      "successful" -> "bg-green-100"
+      _ -> "bg-yellow-100"
+    end
+  end
+
+  def deployment_status_text_color(appstatus) do
+    case appstatus["deploymentStatus"]["status"] do
+      "successful" -> "text-green-800"
+      _ -> "text-yellow-800"
+    end
+  end
+
   def preview_url(app) do
     "https://#{app["name"]}.fly.dev"
   end

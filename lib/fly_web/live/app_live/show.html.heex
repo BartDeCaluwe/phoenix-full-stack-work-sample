@@ -124,13 +124,20 @@
           </section>
 
           <%= if @appstatus do %>
-          <!-- Deployment status -->
+          <!-- Deployment -->
           <section aria-labelledby="deployment-status-title">
             <div class="bg-white shadow sm:rounded-lg">
-              <div class="px-4 py-5 sm:px-6 flex justify-between">
-                <h2 class="text-lg leading-6 font-medium text-gray-900">
-                  Deployment status
-                </h2>
+              <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+                <div class="flex justify-between items-center">
+                  <h2 class="text-lg leading-6 font-medium text-gray-900">
+                    Deployment
+                  </h2>
+                  <span>
+                    <p class={"px-2 mx-4 inline-flex text-xs leading-5 font-semibold rounded-full #{deployment_status_bg_color(@appstatus)} #{deployment_status_text_color(@appstatus)}"}>
+                      <%= @appstatus["deploymentStatus"]["status"] %>
+                    </p>
+                  </span>
+                </div>
                 <span class="text-sm">updated at <%= human_readable_datetime(@appstatusUpdatedAt) %></span>
               </div>
               <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
@@ -150,7 +157,7 @@
                                     Task
                                   </th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Version
+                                    V#
                                   </th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Region
@@ -182,7 +189,7 @@
                                       <%= allocation["taskName"] %>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                      <%= allocation["version"] %>
+                                      V<%= allocation["version"] %>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                       <%= allocation["region"] %>
