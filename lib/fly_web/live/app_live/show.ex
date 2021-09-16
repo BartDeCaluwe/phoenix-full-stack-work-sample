@@ -22,7 +22,7 @@ defmodule FlyWeb.AppLive.Show do
 
     # Only make the API call if the websocket is setup. Not on initial render.
     if connected?(socket) do
-      schedule_work(0)
+      schedule_app_status_refresh(0)
 
       {:ok,
        socket
@@ -72,14 +72,14 @@ defmodule FlyWeb.AppLive.Show do
     end
   end
 
-  defp schedule_work(seconds \\ @default_refresh_rate) do
+  defp schedule_app_status_refresh(seconds \\ @default_refresh_rate) do
     Process.send_after(self(), :refresh_app_status, seconds)
   end
 
   @impl true
   def handle_info(:refresh_app_status, socket) do
     socket = fetch_app_status(socket)
-    schedule_work()
+    schedule_app_status_refresh()
     {:noreply, socket}
   end
 
