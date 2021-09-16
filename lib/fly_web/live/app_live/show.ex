@@ -17,7 +17,8 @@ defmodule FlyWeb.AppLive.Show do
         app_name: name,
         count: 0,
         authenticated: true,
-        appstatus: nil
+        appstatus: nil,
+        show_completed: false
       )
 
     # Only make the API call if the websocket is setup. Not on initial render.
@@ -55,8 +56,9 @@ defmodule FlyWeb.AppLive.Show do
 
   defp fetch_app_status(socket) do
     app_name = socket.assigns.app_name
+    show_completed = socket.assigns.show_completed
 
-    case Client.fetch_app_status(app_name, socket.assigns.config) do
+    case Client.fetch_app_status(app_name, show_completed, socket.assigns.config) do
       {:ok, appstatus} ->
         socket
         |> assign(:appstatus, appstatus)

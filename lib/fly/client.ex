@@ -230,7 +230,7 @@ defmodule Fly.Client do
     end
   end
 
-  def fetch_app_status(name, config) do
+  def fetch_app_status(name, show_completed, config) do
     """
       query($name: String!, $showCompleted: Boolean!) {
         appstatus: app(name: $name) {
@@ -283,7 +283,7 @@ defmodule Fly.Client do
         }
       }
     """
-    |> perform_query(%{name: name, showCompleted: true}, config, :fetch_app_status)
+    |> perform_query(%{name: name, showCompleted: show_completed}, config, :fetch_app_status)
     |> handle_response()
     |> case do
       {:ok, %{"appstatus" => appstatus}} ->
