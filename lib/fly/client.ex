@@ -234,32 +234,17 @@ defmodule Fly.Client do
     """
       query($name: String!, $showCompleted: Boolean!) {
         appstatus: app(name: $name) {
-          id
-          name
-          deployed
-          status
-          hostname
           version
-          appUrl
-          organization {
-            slug
-          }
           deploymentStatus {
-            id
             status
-            version
-            description
             placedCount
-            promoted
             desiredCount
             healthyCount
             unhealthyCount
           }
           allocations(showCompleted: $showCompleted) {
-            id
             idShort
             version
-            latestVersion
             status
             failed
             desiredStatus
@@ -268,18 +253,9 @@ defmodule Fly.Client do
             warningCheckCount
             criticalCheckCount
             createdAt
-            updatedAt
-            canary
             region
             restarts
-            healthy
-            privateIP
             taskName
-            checks {
-              status
-              output
-              name
-            }
           }
         }
       }
