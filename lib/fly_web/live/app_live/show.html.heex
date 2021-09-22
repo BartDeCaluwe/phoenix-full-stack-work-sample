@@ -118,6 +118,7 @@
                             <table class="min-w-full divide-y divide-gray-200">
                               <thead class="bg-gray-50">
                                 <tr>
+                                  <th scope="col" class="pl-3 py-3"></th>
                                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Id
                                   </th>
@@ -150,6 +151,9 @@
                               <tbody class="bg-white divide-y divide-gray-200">
                                 <%= for allocation <- @appstatus["allocations"] do %>
                                   <tr>
+                                    <td class="pl-3 py-4 whitespace-nowrap text-sm text-gray-900">
+                                      <span aria-label="Online" class={"#{if @appstatus["failed"], do: "bg-red-400", else: "bg-green-400"} flex-shrink-0 inline-block h-2 w-2 rounded-full"}></span>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                       <%= allocation["idShort"] %>
                                     </td>

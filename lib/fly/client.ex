@@ -261,6 +261,7 @@ defmodule Fly.Client do
             version
             latestVersion
             status
+            failed
             desiredStatus
             totalCheckCount
             passingCheckCount
