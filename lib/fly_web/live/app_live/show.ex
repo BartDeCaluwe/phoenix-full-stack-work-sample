@@ -138,17 +138,6 @@ defmodule FlyWeb.AppLive.Show do
     "https://#{app["name"]}.fly.dev"
   end
 
-  def format_health_checks(checks) do
-    total = Enum.count(checks)
-
-    passing =
-      Enum.reduce(checks, 0, fn check, acc ->
-        if check["status"] === "passing", do: acc + 1, else: acc
-      end)
-
-    "#{passing} / #{total}"
-  end
-
   def human_readable_datetime(datetime),
     do: "#{datetime.hour}:#{datetime.minute}:#{datetime.second}"
 end
