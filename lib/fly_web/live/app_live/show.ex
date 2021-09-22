@@ -88,8 +88,8 @@ defmodule FlyWeb.AppLive.Show do
   end
 
   @impl true
-  def handle_event("click", _params, socket) do
-    {:noreply, assign(socket, count: socket.assigns.count + 1)}
+  def handle_event("toggle_show_completed", _params, socket) do
+    {:noreply, assign(socket, show_completed: !socket.assigns.show_completed)}
   end
 
   def status_bg_color(app) do
