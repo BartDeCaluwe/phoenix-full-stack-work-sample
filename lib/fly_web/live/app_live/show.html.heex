@@ -75,7 +75,7 @@
               <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
                 <div class="flex justify-between items-center">
                   <h2 class="text-lg leading-6 font-medium text-gray-900">
-                    Deployment V<%= @appstatus["deploymentStatus"]["version"] || "0" %>
+                    Deployment V<%= @appstatus["version"] || "0" %>
                   </h2>
                   <span>
                     <p class={"px-2 mx-4 inline-flex text-xs leading-5 font-semibold rounded-full #{deployment_status_bg_color(@appstatus)} #{deployment_status_text_color(@appstatus)}"}>
