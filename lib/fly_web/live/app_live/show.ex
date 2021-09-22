@@ -96,6 +96,10 @@ defmodule FlyWeb.AppLive.Show do
 
     {:noreply, socket}
   end
+
+  def handle_event("refresh_appstatus", _params, socket) do
+    socket = fetch_app_status(socket)
+    {:noreply, socket}
   end
 
   def status_bg_color(app) do
