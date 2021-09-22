@@ -37,8 +37,8 @@ The refresh is working but on the client side it's hard to tell if anything is h
 Ideally I'd add a loading indicator but I'm afraid this would slow me down too much.
 So I'm opting for adding an "updated at" indicator so the user can see how stale the data is.
 
-I'm not sure what the different deployment statuses can be: successful and running?
-Ideally the graphQL type would be an Enum instead of a String so the docs could list the possible statuses.
+I'm not sure what the different deployment states can be: successful and running?
+Ideally the graphQL type would be an Enum instead of a String so the docs could list the possible states.
 
 Showing the completed allocations or instances by default is a bad idea. This can quickly grow too large to have any use.
 With this in mind I'm adding a toggle to switch whether or not to show completed allocations.
