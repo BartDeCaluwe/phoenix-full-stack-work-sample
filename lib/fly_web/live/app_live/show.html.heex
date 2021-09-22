@@ -152,7 +152,7 @@
                                 <%= for allocation <- @appstatus["allocations"] do %>
                                   <tr>
                                     <td class="pl-3 py-4 whitespace-nowrap text-sm text-gray-900">
-                                      <span aria-label="Online" class={"#{if @appstatus["failed"], do: "bg-red-400", else: "bg-green-400"} flex-shrink-0 inline-block h-2 w-2 rounded-full"}></span>
+                                      <span aria-label="Online" class={"#{if allocation["failed"], do: "bg-red-400", else: "bg-green-400"} flex-shrink-0 inline-block h-2 w-2 rounded-full"}></span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                       <%= allocation["idShort"] %>
